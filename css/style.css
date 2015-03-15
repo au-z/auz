@@ -2,7 +2,6 @@
 /*GENERAL*/
 body{
   background-color: #333;
-  font-family: Questrial;
 }
 .noselect {
     -webkit-touch-callout: none;
@@ -12,14 +11,60 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+h1,h2,h3,h4,h5,h6,span,p{
+  font-family: Questrial;
+}
+h2.ghost{
+  padding-left: 50px;
+  font-size: 50px;
+  color: #444;
+}
 /*END GENERAL*/
 /*HEADER*/
-.jumbotron{
-  background-color: #3b3b3b;
-  color: #d95e53;
-  box-shadow: 10px 0 10px #282828;
-}
+  .jumbotron{
+    background-color: #3b3b3b;
+    color: #d95e53;
+    box-shadow: 0 0 10px #282828;
+  }
 /*END HEADER*/
+/*BLOG*/
+  .post{
+    margin: 10px;
+    border-radius: 4px;
+    background-color: #373737;
+  }
+  .b-body{
+    color: #fff;
+  }
+  .b-social{
+    margin: 10px 10px;
+    height: 30px;
+  }
+  .b-social>ul{
+    display: block;
+    list-style-type: none;
+  }
+  .b-social>ul>li{
+    /*display:table-cell;*/
+    width: 28px;
+    height: 28px;
+    margin: 0 2px 0 2px;
+    padding: 3px;
+    float: left;
+    border-radius: 15px;
+    background-color: #333;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    transition: .3s;
+  }
+  .b-social>ul>li:hover{
+    cursor: pointer;
+    background-color: #555;
+    /*color: #e6a7fd;*/
+    transition: .3s;
+  }
+/*END BLOG*/
 /*LiBERRY*/
   .lb-container{
     width:100%;
@@ -30,15 +75,12 @@ body{
     height: 100%;
     overflow: hidden;
     white-space:nowrap;
-    /*background-color: #fff;*/
   }
   .lb-bookend{
     width: 80px;
     height: 100%;
     float: left;
     margin: 0;
-    /*background-color: #aaa;*/
-
   }
   .lb-book{
     width:100px;
@@ -92,10 +134,14 @@ body{
   .lb-book>.lb-content {
     width: 100%;
     margin-left: 114px;
-  }
-  .lb-content>.row{
-    margin: 0;
     color: #d95e53;
+  }
+  .lb-content .row{
+    margin: 0;
+  }
+  .lb-content .container{
+    margin: 0; padding: 0;
+    padding-right: 114px;
   }
 /*END LIBERRY*/
 /*MASONRY*/
