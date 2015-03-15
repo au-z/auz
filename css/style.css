@@ -1,0 +1,123 @@
+
+/*GENERAL*/
+body{
+  background-color: #333;
+  font-family: Questrial;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/*END GENERAL*/
+/*HEADER*/
+.jumbotron{
+  background-color: #3b3b3b;
+  color: #d95e53;
+  box-shadow: 10px 0 10px #282828;
+}
+/*END HEADER*/
+/*LiBERRY*/
+  .lb-container{
+    width:100%;
+    height: 400px;
+  }
+  .lb-shelf{
+    min-width:100px;
+    height: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    /*background-color: #fff;*/
+  }
+  .lb-bookend{
+    width: 80px;
+    height: 100%;
+    float: left;
+    margin: 0;
+    /*background-color: #aaa;*/
+
+  }
+  .lb-book{
+    width:100px;
+    height:100%;
+    float:left;
+    margin: 0 1px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .lb-book .row{
+    padding-right: 114px;
+  }
+  .clickHide{
+    display: none;
+    transition: .55s;
+  }
+  .lb-book>.lb-spine:hover{
+    cursor:pointer;
+    background-color: #dd534e;
+    transition: .5s;
+  }
+  .lb-book>.lb-spine{
+    width: 114px;
+    height:400px;
+    float:left;
+    background-color: #d95e53;
+    transition: .5s;
+    color: #eee;
+  }
+  .lb-book>.lb-spine>h4{
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    text-transform: uppercase;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    margin: 100px 0 0 -100px;
+    width: 300px;
+  }
+  .lb-spine>h4>.glyphicon{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    margin-right: 20px;
+  }
+  .lb-book>.lb-content {
+    width: 100%;
+    margin-left: 114px;
+  }
+  .lb-content>.row{
+    margin: 0;
+    color: #d95e53;
+  }
+/*END LIBERRY*/
+/*MASONRY*/
+.masonry-brick{
+  margin: 5px;
+  background: #fff;
+}
+.masonry-brick>.overlay{
+  position: absolute;
+  content: ' ';
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: .5s;
+}
+.masonry-brick>.overlay:hover{
+  background-color: rgba(0,0,0,0.6);
+  transition: .5s;
+}
+.m11{width: 260px; height: 260px;}
+.m21{width: 520px; height: 260px;}
+.m12{width: 260px; height: 520px;}
+.m22{width: 520px; height: 520px;}
+/*END MASONRY*/

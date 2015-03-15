@@ -1,0 +1,16 @@
+<div class="lb-shelf">
+  <div class="lb-bookend"></div>
+  <div class="lb-book" ng-repeat="b in books"
+  data-order={{b.id}}>
+    <div class="lb-spine">
+      <h4 class="noselect">
+        <div class="glyphicon glyphicon-book"></div>
+        {{b.title}}
+      </h4>
+    </div>
+    <div class="lb-content">
+      <div ng-include="b.templateUrl" class="lb-content"></div>
+    </div>
+  </div>
+  <div class="lb-bookend"></div>
+</div>

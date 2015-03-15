@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>{{b.title}}</h3>
+    <div ng-controller="galleryCtrl"
+    masonry>
+      <div ng-repeat="brick in bricks"
+      class="masonry-brick {{brick.type}}" style="background-image: url('{{brick.src}}');">
+        <div class="overlay">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

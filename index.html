@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Austin Martin</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css' />
+    <!--[if lt IE 9]>
+      <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header ng-include="'theme/header.html'"></header>
+    <div ui-view></div>
+    <footer ng-include="'theme/footer.html'"></footer>
+
+    <div id="scripts">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+      <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+      <script src="bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+      <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+      <script src="bower_components/angular-masonry/angular-masonry.js"></script>
+      <script src="bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+      <script src="app/LiBerry/LiBerry.js"></script>
+      <script src="app/jquery.hoverflow.min.js"></script>
+
+      <script src="app/app.js"></script>
+      <script src="app/home/homeCtrl.js"></script>
+      <script src="app/gallery/galleryCtrl.js"></script>
+    </div>
+  </body>
+</html>
