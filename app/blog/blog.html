@@ -1,20 +1,24 @@
-<div id="blog" class="container" ng-controller="blogCtrl">
+<div id="blog" class="col-centered" ng-controller="blogCtrl">
   <div class="row">
     <h2 class="ghost">{{b.title}}</h2>
     <!-- <div class="col-xs-2"></div> -->
-    <div ng-repeat="post in featuredPosts" class="post col-md-12">
-      <h3 class="b-title text-center">{{post.title}}</h3>
-      <div class="b-body">
-        <p>{{post.body}}</p>
+    <div ng-repeat="post in featuredPosts">
+      <div class="post col-md-5">
+        <h3 class="b-title text-center">{{post.title}}</h3>
+        <div class="b-body">
+          <p>{{post.body}}</p>
+        </div>
+        <div class="text-center">
+          <ul class="list-inline b-social">
+            <div class="fb-share-button" ></div>
+            <li class="btn btn-danger fa fa-facebook"
+            data-href="https://developers.facebook.com/docs/plugins/"></li>
+            <li class="btn btn-danger fa fa-twitter"></li>
+            <li class="btn btn-danger fa fa-google-plus"></li>
+          </ul>
+        </div>
       </div>
-      <div class="b-social">
-        <ul>
-          <li class="fa fa-facebook"></li>
-          <li class="fa fa-twitter"></li>
-          <li class="fa fa-youtube"></li>
-          <li class="fa fa-reddit"></li>
-        </ul>
-      </div>
+      <div class="col-sm-1"></div>
     </div>
     <!-- <div class="col-xs-2"></div> -->
   </div>
