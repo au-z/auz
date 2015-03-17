@@ -1,0 +1,11 @@
+<div id="3d" class="col-centered" ng-controller="3dCtrl">
+  <div class="row">
+    <h2 class="ghost">{{b.title}}</h2>
+    <div class="hero-unit">
+    	<p>Loading WebGL content with AngularJS</p>
+    	<tjs-model-viewer assimp-url="assimpModelUrl"></tjs-model-viewer>
+    	<button ng-click="changeModel()">change model</button>
+    	<input ng-model="assimpModelUrl"></input>
+    </div>
+  </div>
+</div>

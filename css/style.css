@@ -70,8 +70,6 @@ h2.ghost{
     border-radius: 4px;
     background-color: #373737;
     margin-bottom: 20px;
-    /*box-shadow: 0 10px 10px #282828;*/
-
   }
   .b-body{
     color: #fff;
@@ -100,9 +98,6 @@ h2.ghost{
   .lb-container{
     width:100%;
     height: 400px;
-  }
-  .lb-container .row{
-    padding: 10px;
   }
   .lb-shelf{
     min-width:100px;
@@ -165,16 +160,16 @@ h2.ghost{
     margin-right: 20px;
   }
   .lb-book>.lb-content {
-    width: 100%;
     margin-left: 114px;
+    margin-right: 114px;
     color: #d95e53;
   }
   .lb-content .row{
     margin: 0;
+    padding: 0 10px 0 10px;
   }
   .lb-content .container{
     margin: 0; padding: 0;
-    padding-right: 114px;
   }
 /*END LIBERRY*/
 /*MASONRY*/
@@ -200,3 +195,9 @@ h2.ghost{
 .m12{width: 260px; height: 520px;}
 .m22{width: 520px; height: 520px;}
 /*END MASONRY*/
+/*3JS*/
+canvas{
+  width: 1000px;
+  height: 600px;
+}
+/*END 3JS*/
