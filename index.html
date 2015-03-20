@@ -16,10 +16,11 @@
     <![endif]-->
   </head>
   <body>
-    <header ng-include="'theme/header.html'"></header>
-    <div ui-view></div>
+    <div class="wrap">
+      <header ng-include="'theme/header.html'"></header>
+      <div ui-view></div>
+    </div>
     <footer ng-include="'theme/footer.html'"></footer>
-
     <div id="scripts">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script src="bower_components/angular/angular.min.js"></script>

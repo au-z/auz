@@ -1,7 +1,15 @@
 
 /*GENERAL*/
+html,
 body{
   background-color: #333;
+  height: 100%;
+}
+.wrap{
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
 }
 .noselect {
     -webkit-touch-callout: none;
@@ -201,3 +209,10 @@ canvas{
   height: 600px;
 }
 /*END 3JS*/
+/*FOOTER*/
+footer{
+  height: 60px;
+  background-color: #3b3b3b;
+  overflow: hidden;
+}
+/*END FOOTER*/
