@@ -4,8 +4,12 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
   $urlRouterProvider.otherwise('/');
   $stateProvider
     .state('home', {
-      url: '/',
-      templateUrl: 'app/home/home.html'
+		url: '/',
+		templateUrl: 'app/home/home.html'
+    })
+    .state('gallery', {
+    	url: '/',
+    	templateUrl: 'app/gallery/gallery.html'
     });
 }]);
 

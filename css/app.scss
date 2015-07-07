@@ -1,0 +1,51 @@
+$cbg: #333;
+$cbg-light: #3b3b3b;
+$cshadow: #282828;
+$c1: #d95e53;
+
+h1,h2,h3,h4,h5,h6,span,p{
+  font-family: Questrial;
+}
+h2.ghost{
+  padding-left: 50px;
+  font-size: 50px;
+  color: #444;
+}
+
+body{
+	background-color: $cbg-light;
+	height: 100%
+}
+
+header{
+	.jumbotron{
+	    background-color: $cbg-light;
+	    color: $c1;
+	    box-shadow: 0 0 10px $cshadow;
+	}
+}
+
+.post{
+	:before, :after{
+		z-index: -1;
+	    position: absolute;
+	    content: "";
+	    bottom: 15px;
+	    left: 10px;
+	    width: 50%;
+	    top: 80%;
+	    max-width:200px;
+	    background: $cshadow;
+	    -webkit-box-shadow: 0 15px 10px $cshadow;
+	    -moz-box-shadow: 0 15px 10px $cshadow;
+	    box-shadow: 0 15px 10px $cshadow;
+	    -webkit-transform: rotate(-3deg);
+	    -moz-transform: rotate(-3deg);
+	    -o-transform: rotate(-3deg);
+	    -ms-transform: rotate(-3deg);
+	    transform: rotate(-3deg);
+	}
+	:after{
+		@extend .post:before;
+	}
+}

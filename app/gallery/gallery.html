@@ -1,8 +1,10 @@
+<style>
+  body { overflow-y:scroll; }
+</style>
 <div class="row">
   <div class="text-center">
-    <h3>{{b.title}}</h3>
     <div ng-controller="galleryCtrl"
-    masonry>
+    masonry masonry-options="{ transitionDuration: '0.4s' }">
       <div ng-repeat="brick in bricks"
       class="masonry-brick {{brick.type}}" style="background-image: url('{{brick.src}}');">
         <div class="overlay">
