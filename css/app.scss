@@ -4,6 +4,7 @@ $cshadow: #282828;
 $c1: #d95e53;
 $c2: #fff;
 
+
 h1,h2,h3,h4,h5,h6,span,p{
   font-family: Questrial;
 }
@@ -26,19 +27,13 @@ h2.ghost{
     margin: 0 auto;
 }
 
-.noselect{
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+html{
+	height: 100%;
 }
 
-html,
 body{
-	background-color: $cbg-light;
-	height: 100%
+	height: 100%;
+	background-color: $cbg;
 }
 
 header{
@@ -50,10 +45,11 @@ header{
 }
 
 .post{
+	position: relative;
 	border-radius: 4px;
     background-color: #373737;
     margin-bottom: 20px;
-	:before{
+	&:before{
 		z-index: -1;
 	    position: absolute;
 	    content: "";
@@ -72,7 +68,7 @@ header{
 	    -ms-transform: rotate(-3deg);
 	    transform: rotate(-3deg);
 	}
-	:after{
+	&:after{
 		@extend :before;
 		-webkit-transform: rotate(3deg);
 	    -moz-transform: rotate(3deg);
@@ -110,6 +106,8 @@ header{
 .lb-container{
 	width: 100%;
 	height: 400px;
+	overflow: hidden;
+    white-space:nowrap;
 	.lb-shelf{
 		min-width:100px;
 	    height: 100%;
@@ -125,7 +123,6 @@ header{
 			width:100px;
 			height:100%;
 			float:left;
-			margin: 0 1px;
 			overflow: hidden;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -133,12 +130,20 @@ header{
 				padding-right: 114px;
 			}
 			>.lb-spine{
-				width: 114px;
+				width: 120px;
 			    height:400px;
 			    float:left;
-			    background-color: #d95e53;
+			    border-left: 1px solid $cbg;
+			    border-right: 1px solid $cbg;
+			    border-top: 8px solid $cbg;
+			    border-bottom: 8px solid $cbg;
+			    background-color: $c1;
 			    transition: .5s;
 			    color: #eee;
+			    cursor: pointer;
+		        &:hover{
+					background-color: darken($c1, 4%);
+			    }
 			    >h4{
 			    	-webkit-transform: rotate(-90deg);
 				    -moz-transform: rotate(-90deg);
@@ -171,10 +176,6 @@ header{
 			    .container{
 			    	margin: 0; padding: 0;
 			    }
-			}
-			.clickHide{
-				display: none;
-				transition: .55s;
 			}
 		}
 	}
@@ -211,4 +212,15 @@ footer{
   height: 60px;
   background-color: #3b3b3b;
   overflow: hidden;
+}
+
+
+
+.noselect{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

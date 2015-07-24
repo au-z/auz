@@ -7,10 +7,6 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 		url: '/',
 		templateUrl: 'app/home/home.html'
     })
-    .state('gallery', {
-    	url: '/',
-    	templateUrl: 'app/gallery/gallery.html'
-    });
 }]);
 
 //Expose a base url to all controllers

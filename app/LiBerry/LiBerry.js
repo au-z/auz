@@ -25,8 +25,10 @@ var LiBerry = {
 		bookHoverW: 10,
 		shelfLeftMargin: 0,
 		browseView: true,
-		clickState: false,
-		clickAnimating: false,
+		isClicked: false,
+		isAnimating: false,
+		animSpeed: 600,
+		mX: 0,
 	},
 
 	init: function(){
@@ -44,8 +46,9 @@ var LiBerry = {
 		}
 		LiBerry.params.shelfW += 2 * LiBerry.params.bookendW;
 		LiBerry.shelf.css({'width' : LiBerry.params.shelfW});
-		LiBerry.params.shelfLeftMargin = LiBerry.params.containerW/2 - LiBerry.params.shelfW/2 + 20;
-		LiBerry.shelf.css({'margin-left' : LiBerry.params.shelfLeftMargin})
+		LiBerry.params.shelfLeftMargin = LiBerry.params.containerW/2 - LiBerry.params.shelfW/2;
+		LiBerry.shelf.css({'margin-left' : LiBerry.params.shelfLeftMargin});
+		LiBerry.params.mX = window.innerWidth / 2;
 	},
 
 	bindUIEvents: function(){
@@ -57,7 +60,7 @@ var LiBerry = {
 
 	bindWindowResize: function(){
 		$(window).resize(function(e){
-			if(!LiBerry.params.clickState){
+			if(!LiBerry.params.isClicked){
 				LiBerry.arrangeShelf();
 			}else{
 				//we need to adjust elements based on the new window width
@@ -73,86 +76,92 @@ var LiBerry = {
 	},
 
 	bindMouseEvent: function(){
-	if(!LiBerry.params.clickAnimating){
-		$(document).mousemove(function(e) {
-		if(!LiBerry.params.clickState){
-			if(LiBerry.params.browseView){
-			var xOffset = (LiBerry.params.shelfW*0.5) - e.pageX;
-			if (xOffset <= 0){
-				LiBerry.shelf.css(
-				{'margin-left' : LiBerry.params.shelfLeftMargin - (Math.abs(xOffset)*0.05)}
-				);
-			}else{
-				LiBerry.shelf.css(
-				{'margin-left' : LiBerry.params.shelfLeftMargin + (Math.abs(xOffset)*0.05)}
-				);
+		$(window).mousemove(function(e) {
+			if(!LiBerry.params.isAnimating){
+				var mouseX = e.pageX;
+				
 			}
-			}
-		}
+
 		});
-	}
 	},
 
-	bindHoverEvent: function(){
+	bindHoverEvent: function(){	
 		LiBerry.books.hover(function(e){
-			var hoverBook = $(this);
-			if(!LiBerry.params.clickState){
-				$(hoverBook).hoverFlow(e.type,
-					{'width': LiBerry.params.bookW + LiBerry.params.bookHoverW}, 360);
-				$(LiBerry.shelf).stop().hoverFlow(e.type,
-					{'width': LiBerry.params.shelfW + LiBerry.params.bookHoverW},
-					{'margin-left' : '-=5'}, 360);
+			if(!LiBerry.params.isAnimating){
+				// console.log('Hovering and animating = ' + LiBerry.params.isAnimating );
+				var hoverBook = $(this);
+				if(!LiBerry.params.isClicked){
+					$(hoverBook).hoverFlow(e.type,
+						{'width': LiBerry.params.bookW + LiBerry.params.bookHoverW},
+						300);
+					$(LiBerry.shelf).hoverFlow(e.type,
+						{'margin-left' : '-=' + (LiBerry.params.bookHoverW / 2).toString()}, 300);
+				}
 			}
 		}, function(e){
-			var hoverBook = $(this);
-			if(!LiBerry.params.clickState){
-				$(LiBerry.shelf).hoverFlow(e.type,
-					{'width': LiBerry.params.shelfW},
-					{'margin-left' : '+=5'}, 360);
-				$(hoverBook).hoverFlow(e.type,
-					{'width': LiBerry.params.bookW - 2}, 360);
-				}
+			if(!LiBerry.params.isAnimating){
+				var hoverBook = $(this);
+				if(!LiBerry.params.isClicked){
+					$(LiBerry.shelf).hoverFlow(e.type,
+						{'margin-left' : '+=' + (LiBerry.params.bookHoverW / 2).toString()}, 300);
+					$(hoverBook).hoverFlow(e.type,
+						{'width': LiBerry.params.bookW}, 
+						300);
+					}
+			}
 		});
 	},
 
 	bindClickEvent: function(callback){
 		LiBerry.spines.click(function(e){
-			LiBerry.params.clickAnimating = true;
-			LiBerry.params.clickState = !LiBerry.params.clickState;
+			LiBerry.params.isAnimating = true;
 			$('*').stop( true ); //stop all other animations
-
+			LiBerry.params.isClicked = !LiBerry.params.isClicked;
 			LiBerry.clickedBook = $(this).parent();
 			var clickedBookIndex = LiBerry.clickedBook.data('order');
-			for(var i = 0; i < LiBerry.books.length; ++i){
-				if(clickedBookIndex !== i){
-					$(LiBerry.books[i]).toggleClass('clickHide');
-					$(LiBerry.books[i]).animate({
-					'width' : LiBerry.params.clickState ?
-					0 : 100 }, 550);
-				}
+			if(LiBerry.params.isClicked){
+				LiBerry.collapseShelf(clickedBookIndex);
+			}else{ // return to shelfMode
+				LiBerry.restoreShelf(clickedBookIndex);
 			}
-			for(var i = 0; i < LiBerry.bookends.length; ++i){
-				$(LiBerry.bookends[i]).toggleClass('clickHide');
-			}
-
-			LiBerry.shelf.animate({
-				'width' : LiBerry.params.clickState ?
-					LiBerry.params.containerW : LiBerry.params.shelfW,
-				'margin-left' : LiBerry.params.clickState ?
-					0 : LiBerry.params.shelfLeftMargin},
-				500, 'easeOutCubic');
-			LiBerry.clickedBook.animate({
-				'width' : LiBerry.params.clickState ?
-				LiBerry.params.containerW : LiBerry.params.bookW},
-				500, 'easeOutCubic');
-
 			LiBerry.calcContentHeight();
 			callback(); // reMasonry
 		});
 	},
 
+		collapseShelf: function(clickedBookIndex){
+			// remove bookends
+			$(LiBerry.bookends).animate({'width' : 0 }, LiBerry.params.animSpeed);
+			//collapse other books
+			for(var i = 0; i < LiBerry.books.length; ++i){
+				if(clickedBookIndex !== i) $(LiBerry.books[i]).animate({ 'width' : 0 }, LiBerry.params.animSpeed);
+			}
+
+			LiBerry.clickedBook.animate({
+				'width' : LiBerry.params.containerW,
+				'margin' : '0' }, LiBerry.params.animSpeed, 'easeOutCubic');
+			LiBerry.shelf.css({'width' : LiBerry.params.containerW * 1.4});
+			LiBerry.shelf.animate({ 'margin-left' : 0 }, 1000, 'easeOutCubic');
+		},
+
+		restoreShelf: function(clickedBookIndex){
+			//restore bookends
+			$(LiBerry.bookends).animate({'width' : 80 }, LiBerry.params.animSpeed);
+			//collapse other books
+			for(var i = 0; i < LiBerry.books.length; ++i){
+				if(clickedBookIndex !== i) $(LiBerry.books[i]).animate({ 'width' : 100 }, LiBerry.params.animSpeed);
+			}
+
+			LiBerry.clickedBook.animate({
+				'width' : LiBerry.params.bookW,
+				'margin' : '0' }, LiBerry.params.animSpeed, 'easeOutCubic');
+			LiBerry.shelf.css({'width' : 'auto'});
+			LiBerry.shelf.animate({ 'margin-left' : LiBerry.params.shelfLeftMargin }, 1000, 'easeOutCubic');
+		},
+
 	reMasonry: function(){
-		if(LiBerry.params.clickState){
+		LiBerry.params.isAnimating = false;
+		if(LiBerry.params.isClicked){
 			var reMasonry = setTimeout(function(){
 				// broadcast forcing masonry to reload
 				$rootScope.$broadcast('masonry.reload');
@@ -163,12 +172,10 @@ var LiBerry = {
 	calcContentHeight: function(){
 		contentHeight = LiBerry.clickedBook.find('.lb-content').height();
 		LiBerry.container.animate({
-			'height' : LiBerry.params.clickState ?
+			'height' : LiBerry.params.isClicked ?
 			((contentHeight == 0) ? '400px' : contentHeight) : '400px'},
 			500, 'easeOutCubic');
 	}};
-// END LIBERRY OBJECT
-
 					LiBerry.init();       	
 				});
 			}
