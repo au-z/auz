@@ -1,10 +1,10 @@
-h1, h2, h3, h4, h5, h6, span, p {
+h1, h2, h3, h4, h5, h6, span, p, a {
   font-family: Questrial; }
 
 h2.ghost {
   padding-left: 50px;
   font-size: 50px;
-  color: #444; }
+  color: #4d4d4d; }
 
 .wrap {
   min-height: 100%;
@@ -30,9 +30,13 @@ header .jumbotron {
 
 .post {
   position: relative;
+  min-width: 420px;
   border-radius: 4px;
-  background-color: #373737;
-  margin-bottom: 20px; }
+  background-color: #3b3b3b;
+  padding-top: 1px;
+  padding-padding: 1px;
+  margin-bottom: 20px;
+  word-wrap: break-word; }
   .post:before, .post:after {
     z-index: -1;
     position: absolute;
@@ -61,6 +65,12 @@ header .jumbotron {
     left: auto; }
   .post .b-body {
     color: #fff; }
+    .post .b-body p {
+      white-space: normal;
+      line-height: 1.6em; }
+    .post .b-body a {
+      text-decoration: none;
+      color: #de7268; }
 
 .b-social {
   margin-top: 15px;
@@ -81,6 +91,7 @@ header .jumbotron {
 
 .lb-container {
   width: 100%;
+  min-height: 400px;
   height: 400px;
   overflow: hidden;
   white-space: nowrap; }
@@ -98,19 +109,19 @@ header .jumbotron {
       width: 100px;
       height: 100%;
       float: left;
+      border-top: 8px solid #333;
+      border-bottom: 8px solid #333;
       overflow: hidden;
       background-repeat: no-repeat;
       background-size: cover; }
       .lb-container .lb-shelf .lb-book > .row {
-        padding-right: 114px; }
+        padding-right: 120px; }
       .lb-container .lb-shelf .lb-book > .lb-spine {
         width: 120px;
         height: 400px;
         float: left;
         border-left: 1px solid #333;
         border-right: 1px solid #333;
-        border-top: 8px solid #333;
-        border-bottom: 8px solid #333;
         background-color: #d95e53;
         transition: .5s;
         color: #eee;
@@ -135,9 +146,11 @@ header .jumbotron {
             transform: rotate(90deg);
             margin-right: 20px; }
       .lb-container .lb-shelf .lb-book .lb-content {
-        margin-left: 114px;
-        margin-right: 114px;
-        color: #d95e53; }
+        margin-left: 120px;
+        margin-right: 120px;
+        color: #d95e53;
+        opacity: 0;
+        transition: 1.0s; }
         .lb-container .lb-shelf .lb-book .lb-content .row {
           margin: 0;
           padding: 0 10px 0 10px; }

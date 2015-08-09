@@ -1,4 +1,9 @@
-var app = angular.module('app', ['ui.router', 'directive.LiBerry', 'wu.masonry', 'tjsModelViewer']);
+var app = angular.module('app', [
+	'ui.router', 
+	'directive.LiBerry', 
+	'wu.masonry', 
+	'tjsModelViewer',
+	'ngSanitize']);
 
 app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
   $urlRouterProvider.otherwise('/');

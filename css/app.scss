@@ -5,14 +5,14 @@ $c1: #d95e53;
 $c2: #fff;
 
 
-h1,h2,h3,h4,h5,h6,span,p{
+h1,h2,h3,h4,h5,h6,span,p,a{
   font-family: Questrial;
 }
 
 h2.ghost{
   padding-left: 50px;
   font-size: 50px;
-  color: #444;
+  color: lighten($cbg, 10%);
 }
 
 .wrap{
@@ -46,9 +46,13 @@ header{
 
 .post{
 	position: relative;
+	min-width: 420px;
 	border-radius: 4px;
-    background-color: #373737;
+    background-color: $cbg-light;
+    padding-top: 1px;
+    padding-padding: 1px;
     margin-bottom: 20px;
+    word-wrap: break-word;
 	&:before{
 		z-index: -1;
 	    position: absolute;
@@ -80,6 +84,14 @@ header{
 	}
 	.b-body{
 		color: $c2;
+		p{
+			white-space: normal;
+			line-height: 1.6em;
+		}
+		a{
+			text-decoration: none;
+			color: lighten($c1, 5%);
+		}
 	}
 }
 
@@ -105,6 +117,7 @@ header{
 
 .lb-container{
 	width: 100%;
+	min-height: 400px;
 	height: 400px;
 	overflow: hidden;
     white-space:nowrap;
@@ -123,11 +136,13 @@ header{
 			width:100px;
 			height:100%;
 			float:left;
+			border-top: 8px solid $cbg;
+			border-bottom: 8px solid $cbg;
 			overflow: hidden;
 			background-repeat: no-repeat;
 			background-size: cover;
 			>.row{
-				padding-right: 114px;
+				padding-right: 120px;
 			}
 			>.lb-spine{
 				width: 120px;
@@ -135,8 +150,6 @@ header{
 			    float:left;
 			    border-left: 1px solid $cbg;
 			    border-right: 1px solid $cbg;
-			    border-top: 8px solid $cbg;
-			    border-bottom: 8px solid $cbg;
 			    background-color: $c1;
 			    transition: .5s;
 			    color: #eee;
@@ -166,9 +179,11 @@ header{
 			}
 
 			.lb-content{
-				margin-left: 114px;
-			    margin-right: 114px;
+				margin-left: 120px;
+			    margin-right: 120px;
 			    color: #d95e53;
+			    opacity: 0;
+			    transition: 1.0s;
 			    .row{
 			    	margin: 0;
     				padding: 0 10px 0 10px;
@@ -210,7 +225,7 @@ canvas{
 
 footer{
   height: 60px;
-  background-color: #3b3b3b;
+  background-color: $cbg-light;
   overflow: hidden;
 }
 

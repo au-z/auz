@@ -19,6 +19,7 @@ var LiBerry = {
 
 	params: {
 		containerW: 0,
+		containerH: 400,
 		shelfW: 0,
 		bookendW: 0,
 		bookW: 0,
@@ -69,7 +70,7 @@ var LiBerry = {
 				LiBerry.shelf.css({'width' : LiBerry.params.containerW});
 				if(LiBerry.clickedBook != null){
 					LiBerry.clickedBook.css({'width' : LiBerry.params.containerW});
-					LiBerry.calcContentHeight();
+					// LiBerry.calcContentHeight();
 				}
 			}
 		});
@@ -124,7 +125,6 @@ var LiBerry = {
 			}else{ // return to shelfMode
 				LiBerry.restoreShelf(clickedBookIndex);
 			}
-			LiBerry.calcContentHeight();
 			callback(); // reMasonry
 		});
 	},
@@ -137,11 +137,18 @@ var LiBerry = {
 				if(clickedBookIndex !== i) $(LiBerry.books[i]).animate({ 'width' : 0 }, LiBerry.params.animSpeed);
 			}
 
+			LiBerry.clickedBook.find('.lb-content').css({'opacity' : 1});
 			LiBerry.clickedBook.animate({
 				'width' : LiBerry.params.containerW,
 				'margin' : '0' }, LiBerry.params.animSpeed, 'easeOutCubic');
+			
 			LiBerry.shelf.css({'width' : LiBerry.params.containerW * 1.4});
-			LiBerry.shelf.animate({ 'margin-left' : 0 }, 1000, 'easeOutCubic');
+			LiBerry.shelf.animate({ 'margin-left' : 0 }, 1000, 'easeOutCubic', function(){			
+				console.log('height change!');
+				// LiBerry.calcContentHeight();
+			});
+
+			LiBerry.container.css({ 'height' : 'auto'});
 		},
 
 		restoreShelf: function(clickedBookIndex){
@@ -152,11 +159,18 @@ var LiBerry = {
 				if(clickedBookIndex !== i) $(LiBerry.books[i]).animate({ 'width' : 100 }, LiBerry.params.animSpeed);
 			}
 
+			LiBerry.clickedBook.find('.lb-content').css({'opacity' : 0});
 			LiBerry.clickedBook.animate({
 				'width' : LiBerry.params.bookW,
 				'margin' : '0' }, LiBerry.params.animSpeed, 'easeOutCubic');
+			
 			LiBerry.shelf.css({'width' : 'auto'});
-			LiBerry.shelf.animate({ 'margin-left' : LiBerry.params.shelfLeftMargin }, 1000, 'easeOutCubic');
+			LiBerry.shelf.animate({ 'margin-left' : LiBerry.params.shelfLeftMargin }, 1000, 'easeOutCubic', function(){
+				// LiBerry.calcContentHeight();
+			});
+
+			LiBerry.container.css({ 'height' : LiBerry.params.containerH});
+
 		},
 
 	reMasonry: function(){
@@ -167,14 +181,6 @@ var LiBerry = {
 				$rootScope.$broadcast('masonry.reload');
 			}, 500);
 		}
-	},
-
-	calcContentHeight: function(){
-		contentHeight = LiBerry.clickedBook.find('.lb-content').height();
-		LiBerry.container.animate({
-			'height' : LiBerry.params.isClicked ?
-			((contentHeight == 0) ? '400px' : contentHeight) : '400px'},
-			500, 'easeOutCubic');
 	}};
 					LiBerry.init();       	
 				});
