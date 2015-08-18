@@ -151,39 +151,66 @@ header .jumbotron {
         color: #d95e53;
         opacity: 0;
         transition: 1.0s; }
+        .lb-container .lb-shelf .lb-book .lb-content > div {
+          margin-right: 120px; }
         .lb-container .lb-shelf .lb-book .lb-content .row {
           margin: 0;
           padding: 0 10px 0 10px; }
         .lb-container .lb-shelf .lb-book .lb-content .container {
           margin: 0;
           padding: 0; }
-
-.masonry-brick {
-  margin: 5px;
-  background: #fff; }
-  .masonry-brick .overlay {
-    position: absolute;
-    content: ' ';
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    transition: .5s; }
-    .masonry-brick .overlay :hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transition: .5s; }
-  .masonry-brick .m11 {
-    width: 260px;
-    height: 260px; }
-  .masonry-brick .m21 {
-    width: 530px;
-    height: 260px; }
-  .masonry-brick .m12 {
-    width: 260px;
-    height: 530px; }
-  .masonry-brick .m22 {
-    width: 530px;
-    height: 530px; }
+        .lb-container .lb-shelf .lb-book .lb-content .masonry-brick {
+          margin: 5px;
+          background: #fff;
+          overflow: hidden; }
+          .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay {
+            position: absolute;
+            content: ' ';
+            left: -1px;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            opacity: 0.0;
+            transition: .5s; }
+            .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay:hover {
+              opacity: 1.0;
+              background-color: rgba(0, 0, 0, 0.8);
+              cursor: pointer;
+              transition: .5s; }
+            .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay .blurb-container {
+              position: relative;
+              height: 100%;
+              width: 100%;
+              margin: 0 auto;
+              padding: 20px;
+              overflow: auto; }
+              .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay .blurb-container .blurb {
+                width: 100%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                top: 50%;
+                left: 50%; }
+                .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay .blurb-container .blurb .title {
+                  position: relative;
+                  padding: 20px 0;
+                  border-top: 1px solid #fff;
+                  border-bottom: 1px solid #fff; }
+                  .lb-container .lb-shelf .lb-book .lb-content .masonry-brick .overlay .blurb-container .blurb .title h3 {
+                    margin: 0;
+                    font-size: 3rem;
+                    color: #fff; }
+        .lb-container .lb-shelf .lb-book .lb-content .m11 {
+          width: 260px;
+          height: 260px; }
+        .lb-container .lb-shelf .lb-book .lb-content .m21 {
+          width: 530px;
+          height: 260px; }
+        .lb-container .lb-shelf .lb-book .lb-content .m12 {
+          width: 260px;
+          height: 530px; }
+        .lb-container .lb-shelf .lb-book .lb-content .m22 {
+          width: 530px;
+          height: 530px; }
 
 canvas {
   width: 1000px;

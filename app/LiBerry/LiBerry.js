@@ -14,6 +14,7 @@ var LiBerry = {
 	shelf: $('.lb-shelf'),
 	bookends: $('.lb-bookend'),
 	books: $('.lb-book'),
+	content: $('.lb-content'),
 	spines: $('.lb-spine'),
 	clickedBook: null,
 
@@ -32,6 +33,18 @@ var LiBerry = {
 		mX: 0,
 	},
 
+	// logObj: function(){
+	// 	console.log(
+	// 		'{ container: ' + LiBerry.container + 
+	// 		'shelf: ' + LiBerry.shelf +
+	// 		'bookends: ' + LiBerry.bookends +
+	// 		'books: ' + LiBerry.books +
+	// 		'content: ' + LiBerry.content +
+	// 		'spines: ' + LiBerry.spines +
+	// 		'clickedBook: ' + LiBerry.clickedBook +
+	// 		'}');
+	// },
+
 	init: function(){
 		LiBerry.arrangeShelf();
 		LiBerry.bindUIEvents();
@@ -46,10 +59,11 @@ var LiBerry = {
 			LiBerry.params.shelfW += LiBerry.params.bookW;
 		}
 		LiBerry.params.shelfW += 2 * LiBerry.params.bookendW;
-		LiBerry.shelf.css({'width' : LiBerry.params.shelfW});
+		LiBerry.content.css({'width' : LiBerry.params.containerW - LiBerry.params.bookW});
 		LiBerry.params.shelfLeftMargin = LiBerry.params.containerW/2 - LiBerry.params.shelfW/2;
-		LiBerry.shelf.css({'margin-left' : LiBerry.params.shelfLeftMargin});
 		LiBerry.params.mX = window.innerWidth / 2;
+		LiBerry.shelf.css({'width' : LiBerry.params.shelfW});
+		LiBerry.shelf.css({'margin-left' : LiBerry.params.shelfLeftMargin});
 	},
 
 	bindUIEvents: function(){
@@ -89,26 +103,23 @@ var LiBerry = {
 	bindHoverEvent: function(){	
 		LiBerry.books.hover(function(e){
 			if(!LiBerry.params.isAnimating){
-				// console.log('Hovering and animating = ' + LiBerry.params.isAnimating );
 				var hoverBook = $(this);
 				if(!LiBerry.params.isClicked){
 					$(hoverBook).hoverFlow(e.type,
-						{'width': LiBerry.params.bookW + LiBerry.params.bookHoverW},
-						300);
+						{'width': LiBerry.params.bookW + LiBerry.params.bookHoverW}, 300);
 					$(LiBerry.shelf).hoverFlow(e.type,
-						{'margin-left' : '-=' + (LiBerry.params.bookHoverW / 2).toString()}, 300);
+						{'margin-left' : '-=' + (LiBerry.params.bookHoverW / 2).toString()}, 150);
 				}
 			}
 		}, function(e){
 			if(!LiBerry.params.isAnimating){
 				var hoverBook = $(this);
 				if(!LiBerry.params.isClicked){
-					$(LiBerry.shelf).hoverFlow(e.type,
-						{'margin-left' : '+=' + (LiBerry.params.bookHoverW / 2).toString()}, 300);
 					$(hoverBook).hoverFlow(e.type,
-						{'width': LiBerry.params.bookW}, 
-						300);
-					}
+						{'width': LiBerry.params.bookW}, 300);
+					$(LiBerry.shelf).hoverFlow(e.type,
+						{'margin-left' : '+=' + (LiBerry.params.bookHoverW / 2).toString()}, 150);
+				}
 			}
 		});
 	},
@@ -182,7 +193,7 @@ var LiBerry = {
 			}, 500);
 		}
 	}};
-					LiBerry.init();       	
+					LiBerry.init();
 				});
 			}
 		};

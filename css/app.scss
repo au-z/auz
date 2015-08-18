@@ -179,11 +179,14 @@ header{
 			}
 
 			.lb-content{
-				margin-left: 120px;
+					margin-left: 120px;
 			    margin-right: 120px;
 			    color: #d95e53;
 			    opacity: 0;
 			    transition: 1.0s;
+			    > div{
+			    	margin-right: 120px;
+			    }
 			    .row{
 			    	margin: 0;
     				padding: 0 10px 0 10px;
@@ -191,31 +194,73 @@ header{
 			    .container{
 			    	margin: 0; padding: 0;
 			    }
+			    .masonry-brick{
+					margin: 5px;
+					background: #fff;
+					overflow: hidden;
+					.overlay{
+						position: absolute;
+						content: ' ';
+						left: -1px;
+						top: -1px;
+						right: -1px;
+						bottom: -1px;
+						opacity: 0.0;
+						transition: .5s;
+						&:hover{
+							opacity: 1.0;
+							background-color: rgba(0,0,0,0.8);
+							cursor: pointer;
+				  		transition: .5s;
+						}
+						.blurb-container{
+							position: relative;
+						  height: 100%;
+						  width: 100%;
+						  margin: 0 auto;
+						  padding: 20px;
+						  overflow: auto;
+							.blurb{
+							  width: 100%;
+							  transform: translate(-50%, -50%);
+							  position: absolute;
+							  top: 50%;
+							  left: 50%;
+								.title{
+									position: relative;
+									padding: 20px 0;
+									// background-color: $c1;
+									border-top: 1px solid $c2;
+									border-bottom: 1px solid $c2;
+									h3{
+										margin: 0;
+										font-size: 3rem;
+										color: $c2;
+									}
+								}
+							}
+						}
+					}
+				}
+				.m11{
+					width: 260px; height: 260px;
+					// .overlay{ border-radius: 260px; }
+				}
+				.m21{
+					width: 530px; height: 260px;
+					// .overlay{ left: 143px; right: 143px; border-radius: 260px; }
+				}
+				.m12{
+					width: 260px; height: 530px;
+					// .overlay{ top: 143px; bottom: 143px; border-radius: 260px; }
+				}
+				.m22{
+					width: 530px; height: 530px;
+					// .overlay{ border-radius: 260px; }
+				}
 			}
 		}
 	}
-}
-
-.masonry-brick{
-	margin: 5px;
-	background: #fff;
-	.overlay{
-		position: absolute;
-		content: ' ';
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		transition: .5s;
-		:hover{
-			background-color: rgba(0,0,0,0.8);
-  			transition: .5s;
-		}
-	}
-	.m11{width: 260px; height: 260px;}
-	.m21{width: 530px; height: 260px;}
-	.m12{width: 260px; height: 530px;}
-	.m22{width: 530px; height: 530px;}
 }
 
 canvas{

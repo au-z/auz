@@ -7,9 +7,19 @@
     masonry masonry-options="{ transitionDuration: '0.4s' }">
       <div ng-repeat="brick in bricks"
       class="masonry-brick {{brick.type}}" style="background-image: url('{{brick.src}}');">
-        <div class="overlay">
-          
-        </div>
+        <a href="gallery/{{brick.title}}">
+          <div class="overlay">
+            <div class="blurb-container">
+              <div class="blurb">
+                <!-- This is some sample text -->
+                <div class="title col-xs-12 text-center">
+                <h3>{{brick.title}}</h3>
+                </div>
+                <div class="desc col-xs-12">{{brick.desc}}</div>
+              </div>
+            </div>    
+          </div>
+        </a>
       </div>
     </div>
   </div>
